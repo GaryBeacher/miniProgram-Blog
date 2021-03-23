@@ -1,0 +1,63 @@
+page{
+  background:#fff;
+}
+.videobox {
+  width: 690rpx;
+  height: auto;
+  margin: 30rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  padding-bottom: 20rpx;
+}
+
+.image {
+  position: relative;
+}
+
+.playbutton {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.newtime {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+.name{
+  padding: 20rpx 0 0;
+font-weight: bold;
+line-height: 40rpx;
+font-size: 32rpx;
+
+}
+.title {
+ padding: 20rpx 0;
+line-height: 30rpx;
+font-size: 22rpx;
+
+}
+ 
+
+.videoimg {
+  width: 100%;
+}
+
+.videoimg {
+  width: 100%;
+  height: auto;
+}
+.novlog{
+  width: 600rpx;
+margin: 300rpx auto;
+text-align: center;
+
+}

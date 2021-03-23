@@ -1,0 +1,13 @@
+<view class="cu-custom" bindtap="doubleClick" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;background-image:url(https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/20200304024949u3927-.gif);">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+       <text class='icon-back'></text> VLOG播放
+    </navigator>
+  </view>
+</view>
+<view class="dialog" wx:if="{{vlogshow}}"> 
+  <view class="videobox" >
+    <video id="myVideo" src="{{vlogsrc}}" autoplay  class='vlogplay'  object-fit='contain'></video> 
+  </view>
+</view>
+<view class='novlog' wx:if="{{!vlogshow}}">{{showtest}}</view>

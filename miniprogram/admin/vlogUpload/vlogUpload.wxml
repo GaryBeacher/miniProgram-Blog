@@ -1,0 +1,70 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;background-image:url(https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/20200304024949u3927-.gif);">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text> VlOG管理
+    </navigator>
+  </view>
+</view>
+<!-- 设置列表 -->
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class='action'>
+    <text class='icon-titles text-orange '></text> VLOG列表
+  </view> 
+</view>
+<view class="cu-list menu-avatar vloglist">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{vlogList}}" wx:for-item="item" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="cu-avatar round lg" style="background-image:url({{item.vlogimg}});"></view>
+      <view class="content">
+        <view class="text-grey text-cut" style='width:550rpx'>{{item.vlogName}}</view>
+        <view class="text-gray   text-cut text-sm"  style='width:550rpx'>
+          {{item.vlogdes}}</view>
+      </view> 
+      <view class="move">
+        <!-- <view class="bg-grey">置顶</view> -->
+        <view class="bg-red" bindtap="deletevlog" data-id="{{item._id}}">删除</view>
+      </view>
+    </view>
+  </view>
+<view class="box">
+  <view class="cu-bar btn-group">
+    <button class="cu-btn text-green line-green shadow" bindtap='goback'>返回</button>
+    <button class="cu-btn bg-green shadow-blur" bindtap='showLabelModal'>上传VLOG</button>
+  </view>
+</view>
+<!-- 新增VLOG窗口 -->
+<view class="cu-modal {{isLabelModelShow?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class='content'>上传VLOG</view>
+      <view class='action' bindtap='hideLabelModal'>
+        <text class='icon-close text-red'></text>
+      </view>
+    </view>
+    <form bindsubmit="formLabelSubmit" report-submit="true">
+      <view class='padding-sm'>
+        <view class="cu-form-group text-left">
+          <view class='title'>VLOG名称:</view>
+          <input placeholder="请填写名称" class='radius' name='vlogName' value='{{vlogName}}'></input>
+        </view>
+        <view class="cu-form-group text-left">
+          <view class='title'>VLOG地址:</view>
+          <input placeholder="请填写VLOG地址" maxlength="-1" class='radius' name='vlogsrc' value='{{vlogsrc}}'></input>
+        </view>
+        <view class="cu-form-group text-left">
+          <view class='title'>VLOG描述:</view>
+          <input placeholder="请填写描述" class='radius' name='vlogdes' value='{{vlogdes}}'></input>
+        </view>
+        <view class="cu-form-group text-left">
+          <view class='title'>VLOG封面:</view>
+          <input placeholder="请填写封面地址" class='radius' name='vlogimg' value='{{vlogimg}}'></input>
+        </view>
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class='action'>
+          <button class='cu-btn' bindtap='hideLabelModal'>取消</button>
+          <button form-type="submit" class='cu-btn margin-left bg-green'>保存</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>

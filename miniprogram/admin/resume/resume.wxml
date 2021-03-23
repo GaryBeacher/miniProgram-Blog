@@ -1,0 +1,7 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;background-image:url(https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/20200304024949u3927-.gif);">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text> Gary的简历
+    </navigator>
+  </view>
+</view>

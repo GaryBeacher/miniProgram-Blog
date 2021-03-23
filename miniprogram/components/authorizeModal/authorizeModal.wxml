@@ -1,0 +1,20 @@
+<view class="authorize-modal">
+	<view class="mark"></view>
+	<view class="modal-content">
+		<view class="title-wrap">
+      <text class="title-text">授权以获得更佳体验</text>
+      <view class="tips-wrap">
+        <view class="tips-title">登录后应用将获得以下权限：</view>
+        <view class="tips-desc"> 
+          微信公开信息（昵称、头像等）
+        </view>
+      </view>
+    </view>
+		<view class="modal-footer">
+			<button class="btn-confirm"
+				open-type="getUserInfo"
+				bindgetuserinfo="getUserInfo"
+				>确认授权</button>
+		</view>
+	</view>
+</view>

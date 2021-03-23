@@ -1,0 +1,141 @@
+<!-- 设置列表 -->
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;background-image:url(https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/20200304024949u3927-.gif);">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+       <text class='icon-back'></text> 后台管理
+    </navigator>
+  </view>
+</view> 
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class='action'>
+        <text class='icon-titles text-orange '></text>
+        全局配置 
+    </view>
+</view>
+<view class="cu-list menu shadow-lg">
+    <view class="cu-item arrow">
+        <view class='content' bindtap='showFormModal'>
+            <text class='icon-cascades text-grey'></text>
+            <text class='text-grey'>管理员FormId</text>
+        </view>
+        <view class='action'>
+            <text class='text-grey text-sm'>可用数量:{{formIdCount}}</text>
+        </view>
+    </view>
+    <view class="cu-item arrow">
+        <view class='content' bindtap=''>
+            <text class='icon-messagefill text-grey'></text>
+            <text class='text-grey'>系统日志</text>
+        </view>
+    </view>
+    <view class="cu-item arrow">
+        <view class='content' bindtap='showReleaseModal'>
+            <text class='icon-formfill text-grey'></text>
+            <text class='text-grey'>版本发布</text>
+        </view>
+    </view>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class='action'>
+        <text class='icon-titles text-orange '></text>
+        博客管理
+    </view>
+</view>
+<view class="cu-list menu shadow-lg">
+    <view class="cu-item arrow">
+        <view class='content' bindtap='showComment'>
+            <text class='icon-comment text-grey'></text>
+            <text class='text-grey'>评论管理</text>
+        </view>
+    </view>
+    <view class="cu-item arrow">
+        <view class='content' bindtap='showArticle'>
+            <text class='icon-post text-grey'></text>
+            <text class='text-grey'>文章管理</text>
+        </view>
+    </view>
+    <view class="cu-item arrow">
+        <view class='content' bindtap='showClassify'>
+            <text class='icon-form text-grey'></text>
+            <text class='text-grey'>专题管理</text>
+        </view>
+    </view>
+    <view class="cu-item arrow">
+        <view class='content' bindtap='showLabel'>
+            <text class='icon-tagfill text-grey'></text>
+            <text class='text-grey'>标签管理</text>
+        </view>
+    </view>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class='action'>
+        <text class='icon-titles text-orange '></text>
+        VLOG管理
+    </view>
+</view>
+<view class="cu-list menu shadow-lg">
+    <view class="cu-item arrow">
+        <view class='content' bindtap='showVlogList'>
+            <text class='icon-comment text-grey'></text>
+            <text class='text-grey'>VLOG上传</text>
+        </view>
+    </view>
+</view>
+<!-- formId设置窗口 -->
+<view class="cu-modal {{isShow?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class='content'>生成FormId</view>
+            <view class='action' bindtap='hideFormModal'>
+                <text class='icon-close text-red'></text>
+            </view>
+        </view>
+        <view class='padding-xl'>
+            <view wx:for="{{formIds}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
+                <view>{{item}}</view>
+            </view>
+        </view>
+        <view class="cu-bar bg-white justify-end">
+            <view class='action'>
+                <form bindsubmit="formSubmit" report-submit="true">
+                    <button form-type="submit" class='cu-btn line-green text-green'>
+                        生成FormId
+                    </button>
+                </form>
+                <button class='cu-btn bg-green margin-left' bindtap='saveFormIds'>批量保存</button>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 版本发布窗口 -->
+<view class="cu-modal {{isReleaseShow?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class='content'>版本发布</view>
+            <view class='action' bindtap='hideReleaseModal'>
+                <text class='icon-close text-red'></text>
+            </view>
+        </view>
+        <form bindsubmit="formRelaeaseSubmit" report-submit="true">
+            <view class='padding-sm'>
+                <view class="cu-form-group text-left">
+                    <view class='title'>版本:</view>
+                    <input placeholder="请填写版本" class='radius' name='releaseName' value='{{release.releaseName}}'></input>
+                </view>
+                <view class="cu-form-group text-left">
+                    <view class='title'>日期:</view>
+                    <input placeholder="请填写日期" class='radius' name='releaseDate' value='{{release.releaseDate}}'></input>
+                </view>
+                <view wx:if="{{isReleaseShow}}" class="cu-form-group text-left">
+                    <textarea placeholder="请输入迭代内容" maxlength="-1" name='releaseContent' value='{{release.releaseContent}}' placeholder-class='placeholder'></textarea>
+                </view>
+            </view>
+            <view class="cu-bar bg-white justify-end">
+                <view class='action'>
+                    <button class='cu-btn' bindtap='hideReleaseModal'>取消</button>
+                    <button form-type="submit" class='cu-btn margin-left bg-green'>保存</button>
+                </view>
+            </view>
+        </form>
+    </view>
+</view>

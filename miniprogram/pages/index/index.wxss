@@ -1,0 +1,296 @@
+page {
+  height: 100%;
+  background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+  background-size: 100%;
+}
+
+.weatherbox {
+  width: 750rpx;
+  left: 0;
+  height: 400rpx;
+  position: relative;
+  background-size: 100%;
+  background-position-y: -550rpx;
+  border-radius: 0 0 30rpx 30rpx;
+  margin-bottom: -60rpx;
+}
+
+.tmp {
+  position: absolute;
+  top: 30%;
+  left: 40rpx;
+  z-index: 2;
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.location {
+  position: absolute;
+  top: 45%;
+  left: 40rpx;
+  z-index: 2;
+  color: #fff;
+}
+
+.week {
+  position: absolute;
+  top: 47%;
+  left: 70%;
+  z-index: 2;
+  color: #fff;
+}
+
+.wenhao {
+  position: absolute;
+  top: 60%;
+  left: 40rpx;
+  font-size: 36rpx;
+  color: #fff;
+  z-index: 2;
+
+}
+
+.box {
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  min-height: 100rpx;
+  background: #fff;
+}
+
+.searchicon {
+  font-variant: small-caps;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #ccc;
+  white-space: nowrap;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  vertical-align: middle;
+}
+
+.headcur {
+  color: #333;
+  font-size: 30rpx;
+  font-weight: 900;
+  /* margin: 0 30rpx !important; */
+}
+
+.headcurnone {
+  color: #ccc;
+  /* margin: 0 30rpx !important; */
+  font-size: 30rpx;
+}
+
+.DrawerPage {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0vw;
+  background: #fff;
+  transition: all 0.6s;
+}
+
+.DrawerPage.show {
+  transform: scale(0.9, 0.9);
+  left: 85vw;
+  box-shadow: 0 0 60rpx rgba(0, 0, 0, 0.2);
+  transform-origin: 0;
+}
+
+.DrawerWindow {
+  position: absolute;
+  width: 85vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transform: scale(0.9, 0.9) translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s;
+}
+
+.DrawerWindow.show {
+  transform: scale(1, 1) translateX(0%);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.DrawerClose {
+  position: absolute;
+  width: 40vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  color: transparent;
+  padding-bottom: 30rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.6));
+  letter-spacing: 5px;
+  font-size: 50rpx;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s;
+}
+
+.DrawerClose.show {
+  opacity: 1;
+  pointer-events: all;
+  width: 15vw;
+  color: #fff;
+}
+
+.DrawerPage .cu-bar.tabbar .action button.icon {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  margin: 0;
+  display: inline-block;
+}
+
+.DrawerPage .cu-bar.tabbar .action .cu-avatar {
+  margin: 0;
+}
+
+.DrawerPage .nav {
+  flex: 1;
+}
+
+.DrawerPage .nav .cu-item.cur {
+  border-bottom: 0;
+  position: relative;
+}
+
+.DrawerPage .nav .cu-item.cur::after {
+  content: "";
+  width: 10rpx;
+  height: 10rpx;
+  background-color: currentColor;
+  position: absolute;
+  bottom: 10rpx;
+  border-radius: 10rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.DrawerPage .cu-bar.tabbar .action {
+  flex: initial;
+}
+
+.radiuss {
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.postmask {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border-radius: 100%;
+}
+
+.postmaskshow {
+  width: 200%;
+  position: absolute;
+  z-index: 2;
+  height: 1000rpx;
+  border-radius: 100%;
+  left: -50%;
+  bottom: -150rpx;
+  transition: all 1s;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.collectionhide {
+  padding: 10rpx;
+  width: 120rpx;
+  flex-direction: column;
+  position: absolute;
+  top: 30%;
+  display: flex;
+  left: 20%;
+  z-index: 1001;
+  border-radius: 100%;
+  text-align: center;
+  align-items: center;
+  height: 120rpx;
+  font-size: 26rpx;
+  transition-delay: 1s;
+  overflow: hidden;
+  justify-content: center;
+  transition: all 1s;
+}
+
+.collectionshow {
+  width: 0;
+  height: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.zanhide {
+  padding: 10rpx;
+  width: 120rpx;
+  flex-direction: column;
+  position: absolute;
+  top: 30%;
+  display: flex;
+  right: 20%;
+  z-index: 1001;
+  border-radius: 100%;
+  text-align: center;
+  align-items: center;
+  height: 120rpx;
+  font-size: 26rpx;
+  transition-delay: 1s;
+  transition: all 1s;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.zanshow {
+  width: 0;
+  height: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.drawbox {
+  width: 80%;
+  height: 60%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 10rpx;
+  color: #333;
+  font-size: 30rpx;
+  padding: 20rpx;
+  line-height: 50rpx;
+  text-align: center;
+}
+
+.radus {
+  position: absolute;
+  height: 64rpx;
+  width: 64rpx;
+  border-radius: 100%;
+  border: 20rpx solid #fff;
+  box-sizing: initial;
+
+}

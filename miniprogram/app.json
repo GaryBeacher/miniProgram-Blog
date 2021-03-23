@@ -1,0 +1,96 @@
+{
+  "pages": [
+    "pages/loading/loading",
+    "pages/index/index",
+    "pages/topic/topic",
+    "pages/mine/mine",
+    "pages/detail/detail",
+    "pages/vlog/vlog", 
+    "pages/vlog/vlogplay/vlogplay"
+  ],
+  "subpackages": [
+    {
+      "root": "admin",
+      "pages": [
+        "index",
+        "articleList/articleList",
+        "classify/classify",
+        "comment/comment",
+        "labelList/labelList",
+        "vlogUpload/vlogUpload",
+        "resume/resume"
+      ]
+    },
+    {
+      "root": "detail",
+      "pages": [
+        "detail"
+      ]
+    },
+    {
+      "root": "loading",
+      "pages": [
+        "loading"
+      ]
+    },
+    {
+      "root": "mine",
+      "pages": [
+        "gary/gary",
+        "collection/collection",
+        "notice/notice",
+        "release/release"
+      ]
+    }
+  ],
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Gary的小世界",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": { 
+    "color": "#ccc",
+    "selectedColor": "#333",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/images/tab/home.png",
+        "selectedIconPath": "/images/tab/shouye.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/topic/topic",
+        "iconPath": "/images/tab/temp.png",
+        "selectedIconPath": "/images/tab/fenlei_.png",
+        "text": "全部文章"
+      },
+      {
+        "pagePath": "pages/vlog/vlog",
+        "iconPath": "/images/tab/vlog.png",
+        "selectedIconPath": "/images/tab/shipin.png",
+        "text": "VLOG"
+      }, 
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "/images/tab/user.png",
+        "selectedIconPath": "/images/tab/yonghu.png",
+        "text": "我"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "darkmode": true
+}

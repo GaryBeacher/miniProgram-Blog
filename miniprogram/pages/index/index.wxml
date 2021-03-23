@@ -1,0 +1,66 @@
+<import src="../../templates/nodata.wxml" />
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}" style="{{modalName=='viewModal'?'':'z-index: 2;'}}">
+  <!-- 天气 -->
+  <view class='weatherbox' style="background-image:url('{{imagesrc}}');">
+    <view class='tmp'>{{cond_txt}} {{tmp}}</view>
+    <view class='location'>{{week[weekNum]}} {{location}}</view>
+    <view class='wenhao'>{{duanju[whduan]}}</view>
+  </view>
+  <!-- 分类 -->
+  <view class='box bg-white' style='border-radius:30rpx 30rpx 0 0;'>
+    <view class=" nav text-center flex" style="width: 100%;"> 
+      <view class="cu-avatar bg-white round lg " bindtap="showModal" data-target="viewModal" style='margin-left:10rpx'>
+        <view class="cu-avatar radiuss">
+          <open-data type="userAvatarUrl"></open-data>  
+        </view>
+      </view>
+      <view class="cu-item text-center flex" wx:key="idx" style="margin: 0 auto;flex:4;display: flex;">
+        <view wx:for="{{classifyList}}" wx:for-index="idx" data-data="{{item}}" class="flex-sub cu-item {{idx==tabCur?'headcur':'headcurnone'}}" bindtap='tabSelect' data-tname='{{item.value.classifyName}}' data-id="{{idx}}">
+          {{item.value.classifyName}}
+        </view>
+      </view>
+      <view class="cu-avatar bg-white round lg  icon-search " bindtap="toSearchPost" style='color:#999;margin-right:10rpx;'></view>
+    </view>
+  </view>
+  <!-- 文章列表 -->
+  <view class="cu-card article no-card">
+  <image class='loadingimg' src='../../images/loading.jpg'  hidden="{{showLoading}}"></image>
+    <view wx:for="{{posts}}" catchlongtap="longTap" wx:key="idx" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" id="{{item._id}}" catchtap="bindPostDetail" class="shadow-warp cu-item shadow solids-bottom">
+      <view catchtap="hidepostmask" class='{{showpostmask&&maskid==item._id?"postmaskshow":"postmask"}}'>
+      </view>
+      <view class=" buttom bg-red cu-item item {{showpostmask&&maskid==item._id?'collectionhide':'collectionshow'}}" catchtap='postCollection'>
+        <text class='icon-{{collection.status?"favorfill":"favor"}} ' style="margin-top:0;font-size:40rpx;"></text>
+        <text>{{collection.text}}</text>
+      </view>
+      <view class="buttom bg-cyan cu-item item {{showpostmask&&maskid==item._id?'zanhide':'zanshow'}}" catchtap='postZan'>
+        <text class='icon-{{zan.status?"likefill":"like"}}' style="margin-top:0;font-size: 40rpx;"></text>
+        <text class=''>{{zan.text}}</text>
+      </view>
+      <view class="title text-cut " style='font-weight:bold'>{{item.title}}</view>
+      <view class="content">
+        <image src="{{item.defaultImageUrl?item.defaultImageUrl:'https://pic4.zhimg.com/v2-8eee47d418929d78c8ff67459ff18dba_r.jpg'}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view class='text-content '>{{item.digest}}</view>
+          <view class="text-gray text-xs">
+            <text class="icon-timefill"></text> {{item.createTime}}
+            <text class="icon-attentionfill" /> {{item.totalVisits}}
+            <text class="icon-appreciatefill" /> {{item.totalZans}}
+            <text class="icon-messagefill" /> {{item.totalComments}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 数据不存在 -->
+  <view wx:if="{{nodata}}">
+    <template is="nodata" />
+  </view>
+</scroll-view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal" style="{{modalName=='viewModal'?'':'z-index: -1;'}}">
+  <text class="icon-pullright"></text>
+</view>
+<!-- 抽屉内容 -->
+<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <view class='drawbox'>原来你找到我啦，这里还不知道放啥，你可以给我一个建议吗？</view>
+</scroll-view> 
+ 

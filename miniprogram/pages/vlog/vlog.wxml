@@ -1,0 +1,33 @@
+<view class="cu-custom" bindtap="doubleClick" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;background-image:url(https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/20200304024949u3927-.gif);">
+    <navigator class='action' delta="1" hover-class="none">
+      VLOG
+    </navigator>
+  </view>
+</view>
+<view class='novlog' wx:if="{{tishi.length>0}}">{{tishi}}</view>
+<scroll-view class='page'>
+  <view class='videobox' wx:for="{{vlogList}}" data-src='{{item.vlogsrc}}' bindtap="toplay" wx:key="idx" wx:for-index="idx" wx:for-item="item">
+    <view class="image">
+      <image class='playbutton' src='cloud://zbq-ev6l9.7a62-zbq-ev6l9-1300157766/icon/play.png'></image>
+      <image class='videoimg' src="{{item.vlogimg}}" mode="widthFix"></image>
+      <view class="cu-tag bg-blue newtime" wx:if="{{idx==0}}">最新</view>
+    </view>
+    <view class='name'>
+      {{item.vlogName}}
+    </view>
+    <view class='title'>
+      {{item.vlogdes}}
+    </view>
+    <view class="content flex-sub">
+      <view class="text-gray text-sm flex justify-between">
+        {{item.timestamp}}
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="cu-modal bottom-modal {{modal?'show':''}}">
+
+</view>
+<image class='loadingimg' src='../../images/loading.jpg'  hidden="{{showLoading}}"></image>

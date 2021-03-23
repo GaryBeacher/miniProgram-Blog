@@ -1,0 +1,23 @@
+<import src="../../templates/nodata.wxml" />
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;background-image:url(https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/20200304024949u3927-.gif);">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text> 更新日志
+    </navigator>
+  </view>
+</view>
+<view class="cu-timeline"> 
+  <view wx:for="{{logs}}" wx:key="idx" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" id="{{item._id}}" class="cu-item">
+    <view class="content">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-cyan">{{item.content.releaseName}}</view>
+        <view class="cu-tag line-cyan">{{item.content.releaseDate}}</view>
+      </view>
+      <view class="{{id=='0'?'margin-top':''}}" wx:for="{{item.content.releaseContent}}" wx:key="id" wx:for-index="id" wx:for-item="childItem">{{childItem}}</view>
+    </view>
+  </view>
+</view>
+<!-- 数据不存在 -->
+<view wx:if="{{nodata}}">
+  <template is="nodata" />
+</view>

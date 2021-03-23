@@ -1,0 +1,7 @@
+{ 
+  "usingComponents": {
+    "poster": "wxa-plugin-canvas/poster",
+    "authorize-modal": "/components/authorizeModal/authorizeModal",
+    "towxml": "/towxml/towxml"
+  }
+}

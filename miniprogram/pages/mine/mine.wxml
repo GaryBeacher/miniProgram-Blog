@@ -1,0 +1,80 @@
+<view class="waterbox">
+  <view class='v'>
+    <image src='https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/bgcolor2.png' class="animationSlow"></image>
+  </view>
+  <view class="header"> 
+    <view class="headerImg">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="headerName">
+      <open-data type="userNickName"></open-data>
+    </view>
+  </view>
+
+  <view class="water">
+    <view class="water-c">
+      <view class="water-1"> </view>
+      <view class="water-2"> </view>
+    </view>
+  </view>
+</view>
+<!-- GITHUB -->
+<view class="padding flex text-center text-grey bg-white shadow-warp">
+  <view class="flex flex-sub flex-direction solid-right">
+    <view class="text-xxl text-orange">{{visitTotal}}</view>
+    <view class="margin-top-sm">
+      <text class="icon-attention"></text> Visit</view>
+  </view>
+  <view class="flex flex-sub flex-direction solid-right">
+    <view class="text-xxl text-blue">{{starCount}}</view>
+    <view class="margin-top-sm">
+      <text class="icon-favor"></text> Stars</view>
+  </view>
+  <view class="flex flex-sub flex-direction">
+    <view class="text-xxl text-green">{{forksCount}}</view>
+    <view class="margin-top-sm">
+      <text class="icon-fork"></text> ForkNum</view>
+  </view>
+</view>
+<!-- ABOUT -->
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+  <view class="cu-list grid col-{{3}} ">
+    <view class="cu-item" bindtap='{{item.name=="意见反馈"||item.name=="留言联系"?"":item.bindtap}}' wx:for="{{iconList}}" wx:key>
+      <view class='icon-{{item.icon}} text-{{item.color}}'></view>
+      <text>{{item.name}}</text>
+      <button class='cu-btn yijian content' wx:if="{{item.name=='意见反馈'}}" open-type='feedback'>
+      </button>
+      <button class='cu-btn yijian content' wx:if="{{item.name=='留言联系'}}" open-type='contact'>
+      </button>
+    </view>
+
+    <view class="cu-item" bindtap='showAdmin' wx:if='{{isAuthor}}'>
+      <view class='icon-repair text-blue'></view>
+      <text>后台管理</text>
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{isLabelModelShow?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class='content'>请输入口令</view>
+      <view class='action' bindtap='hideLabelModal'>
+        <text class='icon-close text-red'></text>
+      </view>
+    </view>
+    <form bindsubmit="formLabelSubmit" report-submit="true">
+      <view class='padding-sm'>
+        <view class="cu-form-group text-left"> 
+          <input placeholder="请填写口令" class='radius' name='password'></input>
+        </view> 
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class='action'>
+          <button class='cu-btn' bindtap='hideLabelModal'>取消</button>
+          <button form-type="submit" class='cu-btn margin-left bg-green'>发送</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>
+<authorize-modal wx:if="{{isAuthoried}}" bind:hideAuthorizeModel='hideAuthorizeModel'></authorize-modal>

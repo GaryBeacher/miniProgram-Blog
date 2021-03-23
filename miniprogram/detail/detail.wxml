@@ -1,0 +1,149 @@
+<import src="../templates/login/login.wxml" />
+<import src="../templates/end.wxml" />
+<!-- <import src="../towxml/entry.wxml" /> -->
+<import src="../templates/nodata.wxml" />
+<!-- 文章详情 -->
+<view class="cu-custom" style="height:{{CustomBar}}px;" bindtap="doubleClick">
+  <view class="cu-bar fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;background-image:url(https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/20200304024949u3927-.gif);">
+    <view class='action border-custom' hover-class="none" style='width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)'>
+      <text class='icon-back' catchtap="backtolast"></text>
+      <text class='icon-homefill' catchtap="backtoindex"></text>
+    </view>
+    <view class='content' style='top:{{StatusBar}}px;'> {{post.title}}</view>
+  </view>
+</view>
+<view class="bg-white" style='padding-top: 40rpx;'>
+  <view class="cu-card dynamic no-card">
+    <view class="cu-item shadow">
+      <!-- <view class='text-content margin-top-sm'>{{post.title}}</view> -->
+      <view class="grid col-1 flex-sub padding-lr">
+        <view class="bg-img only-img" style="background-image:url({{post.defaultImageUrl}})" />
+      </view>
+      <view class='text-gray text-sm text-right padding'>
+        <text class="icon-timefill" /> {{post.createTime}}
+        <text class="icon-attentionfill" /> {{post.totalVisits}}
+        <text class="icon-appreciatefill" /> {{post.totalZans}}
+        <text class="icon-messagefill" /> {{post.totalComments}}
+      </view>
+    </view>
+  </view>
+  <view> 
+      <towxml nodes="{{post.content}}" />  
+      <!-- <towxml nodes="{{post}}" />   -->
+
+  </view> 
+</view>
+<view wx:if="{{showBanner}}" class="cu-item">
+  <view class="content padding-right-xs padding-left-xs">
+    <ad binderror="adError" bindclose="adClose" unit-id="adunit-9b6188843da06444"></ad>
+  </view>
+</view>
+<!-- 评论列表 -->
+<view class="bg-white margin-top-xs">
+  <view class="cu-bar bg-white">
+    <view class='action'>
+      <text class='icon-titles text-green '></text> 评论
+    </view>
+  </view>
+  <!-- 数据不存在 -->
+  <view wx:if="{{nodata}}">
+    <template is="nodata" data="{{ nodata_str }}" />
+  </view>
+  <view class="cu-list menu menu-avatar comment solids-top">
+    <view class="cu-item" wx:for="{{commentList}}" wx:key="idx" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+      <view class="cu-avatar round" style="background-image:url({{item.cAvatarUrl}});" data-id="{{item._id}}" data-name="{{item.cNickName}}" data-openid="{{item.cOpenId}}" bindtap="focusComment"></view>
+      <view class='content'>
+        <view class='text-grey' data-id="{{item._id}}" data-name="{{item.cNickName}}" data-openid="{{item.cOpenId}}" bindtap="focusComment">
+          {{item.cNickName}}
+        </view>
+        <view class='text-gray text-content text-df'>{{item.comment}}</view>
+        <view class='padding-sm radius  text-sm text-gray'>
+          <view class="flex" wx:for="{{item.childComment}}" wx:key="id" wx:for-index="id" wx:for-item="childItem">
+            <view data-id="{{item._id}}" data-name="{{childItem.cNickName}}" data-openid="{{childItem.cOpenId}}" bindtap="focusComment">
+              <view class='text-grey'>{{childItem.cNickName}}：</view>
+            </view>
+            <view class='flex-sub'>{{childItem.comment}}</view>
+          </view>
+        </view>
+        <view class='flex justify-between'>
+          <view class='text-gray text-df'>{{item.createDate}}</view>
+          <view>
+            <text class="icon-messagefill text-gray margin-left-sm"></text>
+            <text class="text-gray margin-left-xs">{{item.childComment.length}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style="padding:50rpx"></view>
+</view>
+<!-- 底部功能 -->
+<view class="comment-fixed">
+  <form catchsubmit="formSubmit" report-submit="true">
+    <view class="cu-bar input">
+      <view class="cu-avatar round">
+        <open-data type="userAvatarUrl"></open-data>
+        <view class='radus'></view>
+      </view>
+      <input class='solid-bottom' maxlength="300" cursor-spacing="10" confirm-type="send" name="inputComment" value="{{commentContent}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onReplyBlur"></input>
+      <button class='cu-btn bg-green shadow-blur' formType="submit">发送</button>
+    </view>
+  </form>
+
+</view>
+<!-- 弹出层：授权 -->
+<template is="login" data="{{showLogin: showLogin}}"></template>
+<!-- 生成海报组件 -->
+<poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"></poster>
+<!-- 展示海报弹窗 -->
+<view class="cu-modal {{isShowPosterModal?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class='content'>海报分享</view>
+      <view class='action' bindtap='hideModal'>
+        <text class='icon-close text-red'></text>
+      </view>
+    </view>
+    <view>
+      <image style='height:800rpx;' mode="aspectFit" src="{{posterImageUrl}}" bindtap="posterImageClick"></image>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class='action margin-0 flex-sub text-green solid-left' bindtap='hideModal'>取消</view>
+      <view class='action margin-0 flex-sub  solid-left' bindtap='savePosterImage'>保存本地</view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 点击弹出操作框 -->
+<view>
+
+  <view class=" buttom bg-red cu-item item" animation="{{animShou}}" bindtap='postCollection'>
+    <text class='icon-{{collection.status?"favorfill":"favor"}} ' style="margin-top:0;font-size: 40rpx;"></text>
+    <text>{{collection.text}}</text>
+  </view>
+  <view class="buttom bg-cyan cu-item item" animation="{{animDian}}" bindtap='postZan'>
+    <text class='icon-{{zan.status?"likefill":"like"}} ' style="margin-top:0;font-size: 40rpx;"></text>
+    <text class=''>{{zan.text}}</text>
+  </view>
+  <view class="cu-item bg-mauve item buttom" animation="{{animZhuan}}">
+    <text class=' icon-share ' style="margin-top:0;font-size: 40rpx;"></text>
+    <text>转发</text>
+    <button class="share-button" open-type="share"></button>
+  </view>
+  <view class=" buttom bg-pink cu-item item" animation="{{animHai}}" catchtap="onCreatePoster">
+    <text class='icon-pic ' style="margin-top:0;font-size: 40rpx;"></text>
+    <text>海报</text>
+  </view>
+  <view class="buttom bg-red cu-item item" animation="{{animZan}}" bindtap='showQrcode'>
+    <text class='icon-redpacket ' style="margin-top:0;font-size: 40rpx;"></text>
+    <text>赞赏</text>
+  </view>
+  <view class="buttom bg-yellow cu-item item" animation="{{animMain}}" bindtap='showOrHide'>
+    <text class='icon-creative ' style="margin-top:0;font-size: 40rpx;"></text>
+    <text>操作</text>
+  </view>
+</view>
+
+
+<authorize-modal wx:if="{{isAuthoried}}" bind:hideAuthorizeModel='hideAuthorizeModel'></authorize-modal>

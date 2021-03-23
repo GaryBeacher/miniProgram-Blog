@@ -1,0 +1,28 @@
+<import src="../../../templates/nodata.wxml" />
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;background-image:url(https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/20200304024949u3927-.gif);">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+       <text class='icon-back'></text> 我的消息
+    </navigator>
+  </view>
+</view>   
+<view class="cu-list menu  menu-avatar">
+    <view class="cu-item" wx:for="{{notice}}" wx:key="idx" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" data-path="{{item.path}}" bindtap="bindDetail" >
+        <view class="cu-avatar round lg">
+            <text class='icon-{{item.icon}} text-{{item.color}}'></text>
+        </view>
+        <view class='content'>
+            <view>{{item.tag}}</view>
+            <view class='text-gray text-sm'>
+                {{item.title}}
+            </view>
+        </view>
+        <view class='action'>
+            <view class='text-grey text-xs'>{{item.datetime}}</view>
+        </view>
+    </view>
+</view>
+<!-- 数据不存在 -->
+<view wx:if="{{nodata}}">
+    <template is="nodata" />
+</view>

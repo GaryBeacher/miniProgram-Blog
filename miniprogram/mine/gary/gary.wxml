@@ -1,0 +1,18 @@
+<view class='v'>
+  <image src='https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/icon/bgcolor2.png' class="animationSlow"></image>
+</view>
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text> 关于Gary
+    </navigator>
+  </view>
+</view>
+<view class="margin-xl bg-white padding-xl radius shadow-lg imgbox" style='background:rgba(255,255,255,0.7)'>
+  <view class="index_story_text ">
+    <image bindtap="previewImg" class='authImg' mode="aspectFill" src='cloud://zbq-ev6l9.7a62-zbq-ev6l9-1300157766/garyimg.jpeg'></image>
+    <view>{{text1}}</view>
+    <view>{{text2}}</view> 
+    <image bindtap="previewImg2" class='codeimg' mode="aspectFill" src='cloud://zbq-ev6l9.7a62-zbq-ev6l9-1300157766/WechatIMG142.jpeg'></image>
+  </view>
+</view>
