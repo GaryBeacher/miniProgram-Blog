@@ -1,6 +1,6 @@
 const config = require('../../utils/config.js')
 const api = require('../../utils/api.js');
-// const regeneratorRuntime = require('../../utils/runtime.js');
+const yuque = require('../../utils/yuque.js');
 const app = getApp();
 Page({
 
@@ -89,8 +89,7 @@ Page({
       mask: true,
     })
     let i = 0;
-    numDH();
-
+    numDH(); 
     function numDH() {
       if (i < 20) {
         setTimeout(function () {

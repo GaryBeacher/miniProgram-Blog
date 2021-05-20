@@ -28,7 +28,7 @@
     </view>
   </view>
   <view> 
-      <towxml nodes="{{post.content}}" />  
+      <towxml nodes="{{post}}" />  
       <!-- <towxml nodes="{{post}}" />   -->
 
   </view> 

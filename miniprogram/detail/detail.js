@@ -1,6 +1,8 @@
 const config = require('../utils/config.js')
 const api = require('../utils/api.js'); 
 const util = require('../utils/util.js');
+const yuque = require('../utils/yuque.js');
+
 const app = getApp();
 var systemInfo = wx.getSystemInfoSync();
 import Poster from '../utils/poster';
@@ -162,15 +164,31 @@ async commentreload(){
       title: '加载中...',
     })
     let that = this
+    yuque.getRepos();
+
     let postDetail = await api.getPostDetail(blogId); 
     let content = app.towxml(postDetail.result.content, 'html');
     postDetail.result.content = content;
-   
-    that.setData({
-      post: postDetail.result
-    },()=>{
-      wx.hideLoading()
-    })
+    yuque.getDocApi('uudlz7').then(res=>{ 
+    let obj = app.towxml(res.data.data.body_lake, 'html',{
+      // theme:'dark',
+      events:{
+        tap:e => {
+          console.log('tap',e);
+        },
+        change:e => {
+          console.log('todo',e);
+        }
+      }
+    }); 
+      that.setData({
+        post: obj
+      },()=>{
+        wx.hideLoading()
+      })
+      console.log(res.data.data.body_lake)
+    }); 
+    
     // wx.request({
     //   url: `https://7a62-zbq-ev6l9-1300157766.tcb.qcloud.la/blog/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E9%80%82%E5%90%88%E7%9A%84%E5%BE%AE%E5%89%8D%E7%AB%AF.md?sign=1b6ec960fcfa68c0dd9e172de99d1616&t=1611634050`,
     //   header: {
@@ -879,7 +897,7 @@ async commentreload(){
   //回到主页
   backtoindex() {
     wx.redirectTo({
-      url: '/loading/loading',
+      url: 'pages/loading/loading',
     })
   },
   //模拟页面双击返回顶部

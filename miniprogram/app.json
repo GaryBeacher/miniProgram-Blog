@@ -26,13 +26,7 @@
       "pages": [
         "detail"
       ]
-    },
-    {
-      "root": "loading",
-      "pages": [
-        "loading"
-      ]
-    },
+    }, 
     {
       "root": "mine",
       "pages": [
