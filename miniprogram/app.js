@@ -61,6 +61,6 @@ App({
   globalData: {
     openid: "",
     userInfo: null,
-    lastLoginDate: ""//最后登录时间
+    lastLoginDate: ""//最后登录时间却定时见
   }
 })
