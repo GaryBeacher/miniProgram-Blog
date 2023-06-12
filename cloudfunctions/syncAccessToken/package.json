@@ -13,6 +13,6 @@
     "hydrogen-js-sdk": "^2.2.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
-    "wx-server-sdk": "^0.8.1"
+    "wx-server-sdk": "^2.6.3"
   }
 }
